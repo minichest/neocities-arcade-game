@@ -38,29 +38,32 @@
     <!-- Target mount container container -->
     <div id="ruffle-player"></div>
 
-    <script>
-        window.RufflePlayer = window.RufflePlayer || {};
-        window.RufflePlayer.config = {
-            /* Route modules to matching CDN folder paths to clear server MIME issues */
-            publicPath: "https://unpkg.com",
-            pageVisibility: false, /* PURE POWER MOVE: Audio tracks keep looping when switching windows! */
-            autoplay: "on",
-            unmuteOverlay: "hidden"
-        };
+    
+<script>
+    // 2. Clear out any manual absolute URL declarations
+    window.RufflePlayer = window.RufflePlayer || {};
+    window.RufflePlayer.config = {
+        /* FORCE RECENT ASSEMBLY ENGAGEMENT: Dropping the absolute path text string 
+           lets Ruffle resolve file module requests directly using local environment variables */
+        pageVisibility: false, /* Keeps audio loops spinning smoothly when tabs blur! */
+        autoplay: "on",
+        unmuteOverlay: "hidden"
+    };
 
-        window.addEventListener("DOMContentLoaded", () => {
-            const ruffle = window.RufflePlayer.newest();
-            const player = ruffle.createPlayer();
-            const container = document.getElementById("ruffle-player");
-            
-            if (container) {
-                container.appendChild(player);
-                player.load({
-                    url: "res/games/sonic-scene-creator-v.2.swf" /* Direct link to game asset path */
-                });
-            }
-        });
-    </script>
+    // 3. Mount the functional framework instance into your display viewport
+    window.addEventListener("DOMContentLoaded", () => {
+        const ruffle = window.RufflePlayer.newest();
+        const player = ruffle.createPlayer();
+        const container = document.getElementById("ruffle-player");
+        
+        if (container) {
+            container.appendChild(player);
+            player.load({
+                url: "res/games/sonic-scene-creator-v.2.swf"
+            });
+        }
+    });
+</script>
 
 </body>
 </html>
